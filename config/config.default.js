@@ -18,18 +18,22 @@ module.exports = appInfo => {
   };
 
   config.mysql = {
-    // 单数据库信息配置
-    client: {
-      // host
-      host: 'xxx',
-      // 端口号
-      port: 'xxx',
-      // 用户名
-      user: 'xxx',
-      // 密码
-      password: 'xxx',
-      // 数据库名
-      database: 'mysql',
+    // 多数据库信息配置
+    clients: {
+      fun: {
+        database: 'fun',
+        host: 'xxx',
+        port: 'xxx',
+        user: 'xxx',
+        password: 'xxx',
+      },
+      sys: {
+        database: 'sys',
+        host: 'xxx',
+        port: 'xxx',
+        user: 'xxx',
+        password: 'xxx',
+      },
     },
     // 是否加载到 app 上，默认开启
     app: true,

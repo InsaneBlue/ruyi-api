@@ -11,7 +11,8 @@ class NewsController extends Controller {
       { id: 1, title: 'this is news 1', url: '/news/1' },
       { id: 2, title: 'this is news 2', url: '/news/2' },
     ];
-    const result = await this.app.mysql.query('SHOW TABLES');
+    const sysClient = this.app.mysql.get('sys');
+    const result = await sysClient.query('SHOW TABLES');
     await ctx.render('news.tpl', { list, result });
   }
 }

@@ -14,7 +14,7 @@
     </ul>
     <div>
       {% for item in result %}
-        <div>{{item.Tables_in_mysql}}</div>
+        <div>{{item.Tables_in_sys}}</div>
       {% endfor %}
     </div>
   </body>

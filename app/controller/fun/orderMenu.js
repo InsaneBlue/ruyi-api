@@ -44,13 +44,13 @@ class OrderMenuController extends Controller {
       response = await funClient.update('dishList', dish_list);
     }
 
-    ctx.body = {
-      body: {
-        dishList: [],
-      },
-      ret: 0,
-      msg: 'ok',
-    }
+    // ctx.body = {
+    //   body: {
+    //     dishList: [],
+    //   },
+    //   ret: 0,
+    //   msg: 'ok',
+    // }
 
 
 

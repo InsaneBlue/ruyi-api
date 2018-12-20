@@ -9,7 +9,7 @@ module.exports = app => {
   router.get('/test', controller.news.index);
 
   // fun
-  router.get('/fun/orderMenu/getMenu', controller.fun.orderMenu.getMenu);
-  router.get('/fun/orderMenu/editDish', controller.fun.orderMenu.editDish);
-  router.get('/fun/orderMenu/addDish', controller.fun.orderMenu.addDish);
+  router.get('/fun/orderMenu/getDish', controller.fun.orderMenu.getDish);
+  router.post('/fun/orderMenu/updateDish', controller.fun.orderMenu.updateDish);
+  // router.get('/fun/orderMenu/addDish', controller.fun.orderMenu.addDish);
 };

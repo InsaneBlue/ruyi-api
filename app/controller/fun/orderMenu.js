@@ -23,51 +23,49 @@ class OrderMenuController extends Controller {
   }
 
   async updateDish() {
-    const { ctx } = this;
     const { ctx, app } = this;
     const funClient = app.mysql.get('fun');
 
-    const { action, menu_id, dish_list } = ctx.request.body;
-    const response = null;
-    if(!dish_list) {
+    // ctx.request.body = {
+    //   action: 'add',
+    //   dish_list: [
+    //     { name: '番茄鸡蛋汤', price: '12元', type: 3, menu_id: 10000 },
+    //     { name: '紫菜蛋汤', price: '12元', type: 3, menu_id: 10000 },
+    //   ],
+    // };
+
+    const { action, dish_list } = ctx.request.body;
+    let response = null;
+    if (!dish_list) {
       ctx.status = 400;
     }
 
-    if(action === 'create') {
+    if (action === 'add') {
       response = await funClient.insert('dishList', dish_list);
-    }else {
-      const option = {
-        where: [
-          id,
-        ]
-      }
-      response = await funClient.update('dishList', dish_list);
+
+    } else if (action === 'delete') {
+      response = await funClient.delete('dishList', { id: 10054 });
+    } else {
+      // const option = {
+      //   where: [
+      //     id,
+      //   ],
+      // };
+      // response = await funClient.update('dishList', dish_list);
     }
 
-    // ctx.body = {
-    //   body: {
-    //     dishList: [],
-    //   },
-    //   ret: 0,
-    //   msg: 'ok',
-    // }
-
-
-
-
-    // // const dishList = ctx.request.body.dishList;
-    // let sqlString = 'INSERT INTO  dishList(id, name, price, type, menu_id) VALUES';
-    // const arr = recipe.map((value, index) => {
-    //   value.menu_id = 10000;
-    //   value.id = 20000 + index;
-    //   return value;
-    // });
-    // arr.forEach(value => {
-    //   value.price = value.price.replace('元', '.00');
-    //   sqlString += `(${value.id},"${value.name}","${value.price}",${value.type},${value.menu_id}),`;
-    // });
-    // // const result = await funClient.query(sqlString);
-    // ctx.body = result;
+    const { affectedRows } = response;
+    if (affectedRows) {
+      ctx.body = {
+        ret: 0,
+        msg: 'ok',
+      };
+    } else {
+      ctx.body = {
+        ret: -1,
+        msg: 'error',
+      };
+    }
 
   }
 
